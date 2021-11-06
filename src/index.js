@@ -48,7 +48,7 @@ function logOut() {
   localStorage.clear()
   location.reload()
 }
-async function hendleSubmit() {
+function hendleSubmit() {
   document.getElementById('error').innerText = ''
 
   let url = document.getElementById('url').value
@@ -97,7 +97,7 @@ function showStatistics(username, password) {
     })
 }
 
-async function postUrl(url) {
+function postUrl(url) {
   const headers = {
     url: document.getElementById('url').value,
     name: localStorage.name,
@@ -118,7 +118,7 @@ async function postUrl(url) {
       }
     })
 }
-async function register() {
+function register() {
   document.getElementById('registerStatus').innerText = ''
   const headers = {
     username: document.getElementById('userName').value,
