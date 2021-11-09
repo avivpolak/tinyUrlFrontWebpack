@@ -26,55 +26,35 @@
         padding: 10%;
         box-shadow: black 100px 100px 1000px;
       }
+      #uppersection {
+        background-color: rgb(44, 90, 150);
+        display: flex;
+        height: 60px;
+      }
+      .login,
+      .register,
+      #welcome {
+        display: flex;
+        gap: 10px;
+        float: right;
+      }
+
       #main {
         padding: 10%;
         background-color: rgba(108, 146, 37, 0.227);
         border-radius: 5%;
         text-align: center;
       }
-      h6 {
-        font-size: 10px;
-        font-weight: 100;
-      }
-      h5 {
-        font-size: 30px;
-        font-weight: 100;
-      }
-      h4 {
-        font-size: 60px;
-        font-weight: 100;
-      }
-      h3 {
-        font-size: 120px;
-        font-weight: 100;
-      }
-      h2 {
-        font-size: 250px;
-        font-weight: 100;
-      }
-      h1 {
-        margin: -16%;
-        font-size: 500px;
-      }
+
       #header {
         margin: 10%;
         text-align: center;
-      }
-      .login,
-      .register,
-      #welcome {
-        padding: 10% 40%;
-
-        background-color: rgb(44, 90, 150);
       }
 
       #logout {
         width: 20%;
       }
-      .btn {
-        margin-top: 2%;
-        width: 100%;
-      }
+
       td {
         width: 30%;
       }
@@ -85,43 +65,50 @@
     <title>Mini Url</title>
   </head>
   <body>
-    <div>
-      <h2 id="greetins"></h2>
-      <input class="btn btn-secondary hide" type="button" value="logout" id="logout" />
-    </div>
-    <div class="login" id="loginSection">
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control"
-          name="name"
-          id="name"
-          placeholder="your name here"
-        />
-        <label for="name">name</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input class="form-control" type="password" id="password" placeholder="password" />
-        <label for="password">password</label>
+    <div id="uppersection">
+      <img id="logo" src="./images/logoMiniUrl.png" alt="logo" />
 
+      <div>
+        <h2 id="greetins"></h2>
+        <input class="btn btn-secondary hide" type="button" value="logout" id="logout" />
+      </div>
+
+      <div class="login" id="loginSection">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="name"
+            placeholder="your name here"
+          />
+          <label for="name">name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input class="form-control" type="password" id="password" placeholder="password" />
+          <label for="password">password</label>
+        </div>
         <input type="button" class="btn btn-success" value="login" id="login" />
         <div id="loginStatus"></div>
       </div>
     </div>
-
     <div id="root">
-      <div id="header">
-        <h1>Make</h1>
-        <h2>Your</h2>
-        <h3>Url</h3>
-        <h4>Into</h4>
-        <h5>Tiny</h5>
-        <h6>Url</h6>
-      </div>
       <div id="main">
         <div class="form-floating mb-3">
           <input type="text" class="form-control" name="url" id="url" placeholder="url" />
           <label for="url">https://www.example.com/login</label>
+        </div>
+        <div id="forMembers" class="hide">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="spesiphic"
+              id="spesiphic"
+              placeholder="MyPersonalUrl"
+            />
+            <label for="spesiphic">Castum Url</label>
+          </div>
         </div>
         <div class="primaryButton">
           <input class="btn btn-secondary" type="button" value="get url" id="submit" />
@@ -136,7 +123,11 @@
       <div id="myArea"></div>
     </footer>
     <div id="registerSection">
-      <h5>Don't have a user yet? register now for FREE and follow your links and statistics!</h5>
+      <h5>
+        Don't have a user yet? register now for FREE and follow your links and statistics,and castum
+        url
+      </h5>
+
       <div class="register">
         <div class="form-floating mb-3">
           <input type="text" id="userName" class="form-control" placeholder="name" />

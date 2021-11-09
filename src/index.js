@@ -42,6 +42,7 @@ function loggedInAs(name) {
   document.getElementById('registerSection').classList.toggle('hide')
   document.getElementById('footer').classList.toggle('hide')
   document.getElementById('logout').classList.toggle('hide')
+  document.getElementById('forMembers').classList.toggle('hide')
   showStatistics(localStorage.name, localStorage.password)
 }
 function logOut() {
@@ -53,6 +54,7 @@ function hendleSubmit() {
 
   let url = document.getElementById('url').value
   if (!validate(url)) return
+
   postUrl(url)
 }
 function login() {
@@ -98,12 +100,18 @@ function showStatistics(username, password) {
 }
 
 function postUrl(url) {
-  const headers = {
+  let headers = {
     url: document.getElementById('url').value,
     name: localStorage.name,
   }
+  let api = `http://localhost:${PORT}/new`
+  if (document.getElementById('spesiphic').value) {
+    headers.str = document.getElementById('spesiphic').value
+    api = `http://localhost:${PORT}/new/speciphic`
+  }
+
   axios
-    .post(`http://localhost:${PORT}/new`, 'data', {
+    .post(api, 'data', {
       //the data is not in use for now . nmake it work via data and not with header
       headers: headers,
     })
