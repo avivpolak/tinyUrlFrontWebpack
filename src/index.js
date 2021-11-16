@@ -1,30 +1,3 @@
-// // Test import of a JavaScript module
-// import { example } from '@/js/example'
-
-// // Test import of an asset
-// import webpackLogo from '@/images/webpack-logo.svg'
-
-// // Test import of styles
-// import '@/styles/index.scss'
-
-// // Appending to the DOM
-// const logo = document.createElement('img')
-// logo.src = webpackLogo
-
-// const heading = document.createElement('h1')
-// heading.textContent = example()
-
-// // Test a background image url in CSS
-// const imageBackground = document.createElement('div')
-// imageBackground.classList.add('image')
-
-// // Test a public folder asset
-// const imagePublic = document.createElement('img')
-// imagePublic.src = '/assets/example.png'
-
-// const app = document.querySelector('#root')
-// app.append(logo, heading, imageBackground, imagePublic)
-
 document.getElementById('submit').addEventListener('click', hendleSubmit)
 document.getElementById('copy').addEventListener('click', copyToClpiboard)
 document.getElementById('clear').addEventListener('click', clearInput)
@@ -32,7 +5,8 @@ document.getElementById('register').addEventListener('click', register)
 document.getElementById('login').addEventListener('click', login)
 document.getElementById('logout').addEventListener('click', logOut)
 
-const PORT = 1042
+const port = 3000
+const baseUrl = `http://localhost:${port}`
 if (localStorage.name) {
   loggedInAs(localStorage.name)
 }
@@ -65,7 +39,7 @@ function login() {
   }
 
   axios
-    .put(`http://localhost:${PORT}/login`, 'data', {
+    .put(`${baseUrl}/login`, 'data', {
       headers: headers,
     })
     .then(function (response) {
@@ -91,7 +65,7 @@ function showStatistics(username, password) {
     password: password,
   }
   axios
-    .put(`http://localhost:${PORT}/users/${username}`, 'data', {
+    .put(`${baseUrl}/user/${username}`, 'data', {
       headers: headers,
     })
     .then(function (response) {
@@ -100,28 +74,23 @@ function showStatistics(username, password) {
 }
 
 function postUrl(url) {
-  let headers = {
+  let body = {
     url: document.getElementById('url').value,
     name: localStorage.name,
   }
-  let api = `http://localhost:${PORT}/new`
+  let api = `${baseUrl}/url/new`
   if (document.getElementById('spesiphic').value) {
-    headers.str = document.getElementById('spesiphic').value
-    api = `http://localhost:${PORT}/new/speciphic`
+    body.custom = document.getElementById('spesiphic').value
+    api = `${baseUrl}/url/new/custom`
   }
 
   axios
-    .post(api, 'data', {
-      //the data is not in use for now . nmake it work via data and not with header
-      headers: headers,
-    })
+    .post(api, body)
     .then(function (response) {
-      document.getElementById('url').value = response.data
+      document.getElementById('url').value = `${baseUrl}/url/${response.data}`
     })
     .catch(function (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         document.getElementById('error').innerText = error.response.data
       }
     })
@@ -133,7 +102,7 @@ function register() {
     password: document.getElementById('userPassword').value,
   }
   axios
-    .post(`http://localhost:${PORT}/users/new`, 'data', {
+    .post(`${baseUrl}/users/new`, 'data', {
       headers: headers,
     })
     .then(function (response) {
